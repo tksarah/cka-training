@@ -1,0 +1,40 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: q28-from
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: q28-from
+  template:
+    metadata:
+      labels:
+        app: q28-from
+    spec:
+      containers:
+        - name: nginx-container
+          image: nginx:1.12-alpine
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: q28-to
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: q28-to
+  template:
+    metadata:
+      labels:
+        app: q28-to
+    spec:
+      containers:
+        - name: nginx-container
+          image: nginx:1.12-alpine
+

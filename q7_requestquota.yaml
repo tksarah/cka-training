@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: service-high
+spec:
+  hard:
+    services: "10"

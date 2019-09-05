@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: update-networkpolicy
+
+spec:
+  podSelector:
+    matchLabels:
+      app: q28-to        # q28-to に対して
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          app: q28-from   # q28-from ベルをもつ Pod からの接続を許す
+    ports:
+    - protocol: TCP
+      port: 80

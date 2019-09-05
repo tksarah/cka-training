@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: cpu-150-limit
+spec:
+  limits:
+  - type: Pod
+    max:
+      cpu: 150m
+

@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: q08
+  namespace: default
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: q08
+  template:
+    metadata:
+      labels:
+        app: q08
+    spec:
+      containers:
+        - name: nginx-container
+          image: nginx:1.12
+      tolerations:
+        - key: "app"
+          operator: "Equal"
+          value: "critical"
+          effect: "NoExecute"

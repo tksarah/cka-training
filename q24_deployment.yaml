@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: q24
+  namespace: default
+
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: q24
+  template:
+    metadata:
+      labels:
+        app: q24
+    spec:
+      containers:
+        - name: nginx-container
+          image: nginx:1.12
+      nodeSelector:
+        app: q24node

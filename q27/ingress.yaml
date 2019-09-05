@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: nginx-ingress
+  namespace: default
+  annotations:
+     nginx.ingress.kubernetes.io/rewrite-target: /
+     nginx.ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  tls:
+  - hosts:
+      - q26.example.com
+    secretName: tls-example
+  rules:
+    - host: q26.example.com
+      http:
+        paths:
+          - path: /svc1
+            backend:
+              serviceName: svc1
+              servicePort: 80
+          - path: /svc2
+            backend:
+              serviceName: svc2
+              servicePort: 80
+          - backend:
+              serviceName: default-http-backend
+              servicePort: 80

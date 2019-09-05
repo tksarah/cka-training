@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: q11
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: q11
+  template:
+    metadata:
+      labels:
+        app: q11
+    spec:
+      containers:
+        - name: nginx-container
+          image: nginx:1.12
+          name: http-container
+          image: httpd:2.4
+

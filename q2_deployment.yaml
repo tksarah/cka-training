@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: q02
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: q02
+
+  template:
+    metadata:
+      labels:
+        app: q02
+    spec:
+      containers:
+      - name: nginx-container
+        image: nginx:1.12	
+        volumeMounts:
+        - name: etcdir
+          mountPath: /data
+          readOnly: true
+
+      volumes:
+      - name: etcdir
+        hostPath:
+          path: /etc
+        

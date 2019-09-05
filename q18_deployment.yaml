@@ -1,0 +1,29 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: q18
+  namespace: default
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: q18
+  namespace: default
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: q18
+
+  template:
+    metadata:
+      labels:
+        app: q18
+    spec:
+      serviceAccountName: q18
+      containers:
+        - name: nginx-container
+          image: nginx:1.12

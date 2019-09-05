@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: q05
+  namespace: default
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: q05
+  template:
+    metadata:
+      labels:
+        app: q05
+    spec:
+      containers:
+        - name: nginx-container
+          image: nginx:1.12
+          volumeMounts:
+          - name: tempo
+            mountPath: /usr/share/nginx/html
+      initContainers:
+        - name: inithello
+          image: busybox:1.28
+          volumeMounts:
+          - name: tempo
+            mountPath: /usr/share/nginx/html
+          command: ['sh','-c','echo \"hello,world\" > /usr/share/nginx/html/index.html']
+
+      volumes:
+      - name: tempo
+        emptyDir: {}
+     

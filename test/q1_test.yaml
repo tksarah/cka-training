@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: q01
+  namespace: default
+spec:
+  replicas: 6
+  selector:
+    matchLabels:
+      app: q01
+  template:
+    metadata:
+      labels:
+        app: q01
+    spec:
+      containers:
+        - name: nginx-container
+          image: nginx:1.12
+          resources:
+            limits:
+              cpu: 600m

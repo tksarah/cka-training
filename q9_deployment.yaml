@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: q09
+  namespace: default
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: q09
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 25%
+
+  template:
+    metadata:
+      labels:
+        app: q09
+    spec:
+      containers:
+        - name: nginx-container
+          image: nginx:1.12

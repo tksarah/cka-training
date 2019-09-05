@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: q21
+  namespace: default
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: q21
+  template:
+    metadata:
+      labels:
+        app: q21
+    spec:
+      containers:
+        - name: nginx-container
+          image: nginx:1.12
+
+          #livenessProbe:
+          readinessProbe:
+            httpGet:
+              path: /index.html
+              port: 80
+            initialDelaySeconds: 20
+            periodSeconds: 5
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 2
+
+

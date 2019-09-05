@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: q23
+  namespace: default
+
+spec:
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 100%
+      maxSurge: 0
+  replicas: 3
+  selector:
+    matchLabels:
+      app: q23
+  template:
+    metadata:
+      labels:
+        app: q23
+    spec:
+      containers:
+        - name: nginx-container
+          image: nginx:1.12
